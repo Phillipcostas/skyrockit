@@ -17,5 +17,20 @@
     <a href="<%= application.postingLink %>">View job posting</a>
   <% } %>
   <p>Current Status: <%= application.status %></p>
+
+  <a href="/users/<%= user._id %>/applications/<%= application._id %>/edit">
+    Edit this application
+  </a>
+
+
+ <!-- We'll use method-override to allow us to hit a delete route: -->
+  <form
+    action="/users/<%= user._id %>/applications/<%= application._id %>?_method=DELETE"
+    method="POST"
+  >
+    <button type="submit">Delete this application</button>
+  </form>
+
+
 </body>
 </html>

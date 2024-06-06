@@ -26,8 +26,6 @@ mongoose.connection.on('connected', () => {
 });
 
 
-//server.js
-
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
