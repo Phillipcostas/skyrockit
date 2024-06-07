@@ -3,21 +3,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheets" href="../../public/stylesheets/style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <title>Your Apps</title>
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
-  <h1>Your Apps</h1>
-  <a href="/users/<%=user._id%>/applications/new">Add an App</a>
-  <ul>
-    <% applications.forEach((application)=>{ %>
-      <li>
-        <a href="/users/<%= user._id %>/applications/<%= application._id %>">
-          <%= application.title %> at <%= application.company %></a>
-      </li>
-    <% }) %>
-  </ul>
-</body>
-</html>
+    <div class="all-apps-body">
+      <div class="all-apps-header">
+        <h1>Your Apps</h1>
+        <a class="add-app-link" href="/users/<%=user._id%>/applications/new">Add an App</a>
+      </div>
+      <ul>
+        <% applications.forEach((application)=>{ %>
+          <a href="/users/<%= user._id %>/applications/<%= application._id %>">
+            <li>
+              <%= application.title %> at <%= application.company %>
+            </li>
+          </a>
+          <% }) %>
+      </ul>
+    </div>

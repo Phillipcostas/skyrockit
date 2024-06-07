@@ -16,7 +16,7 @@ const authController = require('./controllers/auth.js');
 const applicationsController = require('./controllers/applications.js')
 
 
-
+const path = require('path')
 const port = process.env.PORT ? process.env.PORT : '3000';
 
 
@@ -29,6 +29,9 @@ mongoose.connection.on('connected', () => {
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
+
+app.use(express.static(path.join(__dirname, 'public')))
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -37,7 +40,7 @@ app.use(
   })
 );
 
-app.use(passUserToView); // add here
+app.use(passUserToView);
 
 
 app.get('/', (req, res) => {
@@ -59,3 +62,4 @@ app.use('/users/:userId/applications', applicationsController);
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
+

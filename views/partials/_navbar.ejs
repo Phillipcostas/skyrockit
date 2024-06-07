@@ -1,14 +1,23 @@
 <!-- views/partials/_navbar.ejs -->
 
-<!-- views/partials/_navbar.ejs -->
-
+<link rel="stylesheets" href="partials.css">
 <nav>
-    <% if(user) { %>
-      <a href="/users/<%=user._id%>/applications">Your Apps</a>
-      <a href="/auth/sign-out">Sign Out</a>
+  <% if(user) { %>
+    <div class="navbar">
+      <h1 id="nav-header">Skyrockit</h1>
+      <div class="nav-links">
+        <a class="authlink" href="/users/<%=user._id%>/applications">Your Apps</a>
+        <a class="authlink" href="/auth/sign-out">Sign Out</a>
+      </div>
+    </div>
     <% } else { %>
-      <a href="/auth/sign-in">Sign In</a>
-      <a href="/auth/sign-up">Sign Up</a>
-    <% } %>
-  </nav>
+      <div class="navbar">
+        <h1 id="nav-header">Skyrockit</h1>
+        <div class="nav-links">
+          <a class="authlink" href="/auth/sign-in">Sign In</a>
+          <a  class="authlink"href="/auth/sign-up">Sign Up</a>
+        </div>
+      </div>
+      <% } %>
+</nav>
 

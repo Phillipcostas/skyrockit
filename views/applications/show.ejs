@@ -1,36 +1,38 @@
-<!-- views/applications/show.ejs -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= application.title %></title>
-</head>
-<body>
-  <%- include('../partials/_navbar.ejs') %>
-  <h1><%= application.title %> at <%= application.company %></h1>
-  <% if (application.notes) { %>
-    <p>Notes: <%= application.notes %></p>
-  <% } %>
-  <% if (application.postingLink) { %>
-    <a href="<%= application.postingLink %>">View job posting</a>
-  <% } %>
-  <p>Current Status: <%= application.status %></p>
-
-  <a href="/users/<%= user._id %>/applications/<%= application._id %>/edit">
-    Edit this application
-  </a>
-
-
- <!-- We'll use method-override to allow us to hit a delete route: -->
-  <form
-    action="/users/<%= user._id %>/applications/<%= application._id %>?_method=DELETE"
-    method="POST"
-  >
-    <button type="submit">Delete this application</button>
-  </form>
-
-
-</body>
-</html>
+<link rel="stylesheets" href="../../public/stylesheets/style.css">
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+      <div class="show-body">
+        <div class="show-header">
+          <h1>
+            <%= application.title %> at <%= application.company %>
+          </h1>
+          <div class="show-sidebar">
+            <div class="show-actions">
+              <a href="/users/<%= user._id %>/applications/<%= application._id %>/edit">
+                Edit App
+              </a>
+              <form action="/users/<%= user._id %>/applications/<%= application._id %>?_method=DELETE" method="POST">
+                <button type="submit">Delete App</button>
+              </form>
+            </div>
+            <p>Current Status: <%= application.status %>
+            </p>
+          </div>
+        </div>
+        <div class="show-notes-container">
+          <% if (application.postingLink) { %>
+            <a href="<%= application.postingLink %>" target="_blank">View job posting</a>
+            <% } %>
+              <% if (application.notes) { %>
+                <div class="show-notes">
+                  <h2>Notes:</h2>
+                  <p>
+                    <%= application.notes %>
+                  </p>
+                </div>
+                <% } %>
+        </div>
+      </div>
+  </body>
+  
